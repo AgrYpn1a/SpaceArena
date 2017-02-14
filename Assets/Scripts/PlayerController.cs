@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private Camera camera;
+    private GameObject camera;
 
     [SerializeField]
     private float speed;
@@ -16,9 +16,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float rotationSpeed = 1.0f;
 
+    // shoot
+    [SerializeField]
+    private GameObject laser;
+    [SerializeField]
+    private Transform gunRight;
+    [SerializeField]
+    private Transform gunLeft;
+
+    // controls
+    [SerializeField]
+    private KeyCode inputShoot;
+
+    private Camera _camera;
+
     void Awake()
     {
-        normalSpeed = speed;
     }
 
     void Start()
@@ -30,11 +43,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePos;
     private Vector2 position;
     private Vector2 targetPos;
-    private Vector2 distance;
-    private float acc;
-    private float normalSpeed;
+    private Vector2 direction;
 
     private bool isMoving;
+
+    private float timeStarted;
+    private float timePassed;
 
     // rotation
     private float targetAngle;
@@ -42,52 +56,41 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+        // pre calculate needed things for momvement & rotation
+        mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
         position.x = transform.position.x;
         position.y = transform.position.y;
 
-        Vector2 direction = (mousePos - position).normalized;
+        direction = (mousePos - position).normalized;
 
-        // acceleration based on mouse distance
-        acc = Mathf.Abs(mousePos.magnitude - position.magnitude);
-        acc = Mathf.Clamp(acc, 1, maxAcceleration); // min acceleration is 1, affects nothing
-
-        //speed = normalSpeed;
-
+        // movement
         if (Input.GetMouseButton(1))
-        {
-            speed += boostSpeed * Time.deltaTime;
-            speed = Mathf.Clamp(speed, normalSpeed, boostSpeed);
+            transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
 
-        }
+        if (Input.GetKeyDown(inputShoot))
+            Shoot();
 
-        speed -= Time.deltaTime;
-        speed = Mathf.Clamp(speed, normalSpeed, boostSpeed);
-
-        distance = mousePos - position;
-
-        if (distance.magnitude < 2)
-            speed = 0;
-        
         // calculate rotation & rotate
         targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.AngleAxis(targetAngle, transform.forward);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
-        // finally, move 
-        //transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
-
-        transform.position = Vector2.Lerp(transform.position, mousePos, speed * Time.deltaTime);
     }
 
-    private void InitMovement()
+    private void Shoot()
     {
-        targetPos = mousePos;
-        isMoving = true;
+        GameObject ls = Instantiate(laser, gunLeft.position, transform.rotation);
+        ls.transform.parent = transform;
+        ls = Instantiate(laser, gunRight.position, transform.rotation);
+        ls.transform.parent = transform;
     }
 
-    private void Move()
+    public void SetCamera(GameObject camera)
     {
+        this.camera = camera;
 
+        // tell camera about self... {to do}
+        // temp
+        _camera = camera.GetComponent<Camera>();
     }
 }
