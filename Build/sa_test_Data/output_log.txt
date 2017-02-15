@@ -1,0 +1,103 @@
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 930M (ID=0x1346)
+    Vendor:   NVIDIA
+    VRAM:     2019 MB
+    Driver:   20.19.15.4549
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\BouncyCastle_GameSparks.dll (this message is harmless)
+Loading D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\BouncyCastle_GameSparks.dll into Unity Child Domain
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\GameSparks.Api.dll (this message is harmless)
+Loading D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\GameSparks.Api.dll into Unity Child Domain
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\GameSparks.dll (this message is harmless)
+Loading D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\GameSparks.dll into Unity Child Domain
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\GameSparksRT.dll (this message is harmless)
+Loading D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\GameSparksRT.dll into Unity Child Domain
+- Completed reload, in  0.057 seconds
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Game Dev\SpaceArena\Build\sa_test_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.881989 ms
+GS: Connecting to:wss://preview-C306494M36d2.ws.gamesparks.net/ws/device/C306494M36d2?deviceOS=WP8&deviceID=98430da3247cfdebbf89f1fce3b2acae59941289&SDK=
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+IPv6 on!
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 538 -> priority: 1 
+GS: OPENED
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: RECV:{"@class": ".AuthenticatedConnectResponse","connectUrl": "wss://gsp-aeu000-se04.gamesparks.net/ws/device/C306494M36d2?deviceOS=WP8&deviceID=98430da3247cfdebbf89f1fce3b2acae59941289&SDK=","requestId": "0"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: Connecting to:wss://gsp-aeu000-se04.gamesparks.net/ws/device/C306494M36d2?deviceOS=WP8&deviceID=98430da3247cfdebbf89f1fce3b2acae59941289&SDK=
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+IPv6 on!
+GS: OPENED
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: RECV:{"@class":".AuthenticatedConnectResponse","nonce":"fe843908-b14d-4dd7-a2fd-7a9d6daa9b0a","requestId":"0"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: SEND:{"@class":".AuthenticatedConnectRequest","hmac":"U22PV2RKq2bzCdlF80YyU7GN4/SkLPBVhf90wMtNfCI=","os":"WP8","platform":"WindowsPlayer","deviceId":"98430da3247cfdebbf89f1fce3b2acae59941289","authToken":""}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: RECV:{"@class":".AuthenticatedConnectResponse","requestId":"0","sessionId":"fe843908-b14d-4dd7-a2fd-7a9d6daa9b0a"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: Available
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Authenticating device...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: SEND:{"@class":".DeviceAuthenticationRequest","deviceId":"98430da3247cfdebbf89f1fce3b2acae59941289","deviceOS":"WP8","deviceType":"Desktop","operatingSystem":"WindowsPlayer","displayName":"rastko2","requestId":"636227922430869415_0"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: RECV:{"@class":".AuthenticationResponse","authToken":"13819bb5-0f46-4ea9-8961-54350178ea37","displayName":"rastko","newPlayer":false,"requestId":"636227922430869415_0","userId":"58a49b5e0a162ad63e881382"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Device authentiated...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GSM | Attempting matchmaking...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: SEND:{"@class":".MatchmakingRequest","matchShortCode":"SPACE_BATTLE","skill":0,"requestId":"636227922444872828_1"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+GS: RECV:{"@class":".MatchmakingResponse","requestId":"636227922444872828_1"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+

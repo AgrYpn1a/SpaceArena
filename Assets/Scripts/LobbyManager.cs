@@ -11,16 +11,18 @@ public class LobbyManager : MonoBehaviour
     [SerializeField]
     private Text nickName, status;
     [SerializeField]
-    private Button btnPlay, btnFindMatch;
+    private Button btnLogin, btnFindMatch, btnStartGame;
 
     #region Panels
     [SerializeField]
     private GameObject loginPanel, matchMakingPanel;
     #endregion
 
+    private RTSessionInfo tempRTSessionInfo;
+
     void Awake()
     {
-        btnPlay.onClick.AddListener(Login);
+        btnLogin.onClick.AddListener(Login);
         btnFindMatch.onClick.AddListener(FindMatch);
 
         GameSparks.Api.Messages.MatchNotFoundMessage.Listener = (message) =>
@@ -29,6 +31,12 @@ public class LobbyManager : MonoBehaviour
         };
 
         GameSparks.Api.Messages.MatchFoundMessage.Listener += OnMatchFound;
+
+        // start game
+        btnStartGame.onClick.AddListener(() =>
+        {
+            GameSparksManager.Instance().StartNewRTSession(tempRTSessionInfo);
+        });
 
     }
 
@@ -70,6 +78,9 @@ public class LobbyManager : MonoBehaviour
         }
         status.text = sBuilder.ToString();
 
+        tempRTSessionInfo = new RTSessionInfo(_message);
 
+        btnFindMatch.gameObject.SetActive(false);
+        btnStartGame.gameObject.SetActive(true);
     }
 }
