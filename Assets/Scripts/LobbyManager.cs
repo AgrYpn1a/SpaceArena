@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class LobbyManager : MonoBehaviour
 {
     [SerializeField]
-    private Text nickName, status;
+    private Text userName, password, status;
     [SerializeField]
     private Button btnLogin, btnFindMatch, btnStartGame;
 
@@ -35,14 +35,13 @@ public class LobbyManager : MonoBehaviour
         // start game
         btnStartGame.onClick.AddListener(() =>
         {
-            GameSparksManager.Instance().StartNewRTSession(tempRTSessionInfo);
         });
 
     }
 
     private void Login()
     {
-        GameSparksManager.Instance().AuthenticateUser(nickName.text, OnAuthentication);
+        GameSparksManager.Instance().AuthenticateUser(userName.text, password.text, OnAuthentication);
     }
 
     private void FindMatch()
@@ -62,6 +61,8 @@ public class LobbyManager : MonoBehaviour
 
     private void OnMatchFound(MatchFoundMessage _message)
     {
+        GameSparksManager.Instance().StartNewRTSession(new RTSessionInfo(_message));
+        /*
         Debug.LogAssertion("Match found!");
 
         StringBuilder sBuilder = new StringBuilder();
@@ -82,5 +83,6 @@ public class LobbyManager : MonoBehaviour
 
         btnFindMatch.gameObject.SetActive(false);
         btnStartGame.gameObject.SetActive(true);
+        */
     }
 }

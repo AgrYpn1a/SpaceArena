@@ -11,12 +11,14 @@ public class GameSparksManager : MonoBehaviour
 {
     private static GameSparksManager instance = null;
 
+    private ChatManager chatManager;
+
     public static GameSparksManager Instance()
     {
         if (instance != null)
             return instance;
 
-        Debug.LogError("GSM| GameSparksManager not initialized...");
+        //Debug.LogError("GSM| GameSparksManager not initialized...");
         return null;
     }
 
@@ -29,27 +31,28 @@ public class GameSparksManager : MonoBehaviour
     public delegate void AuthCallback(AuthenticationResponse _authResp);
     public delegate void MatchingErrorCallback(MatchmakingResponse _resp);
 
-    public void AuthenticateUser(string displayName, AuthCallback authCallback)
+    public void AuthenticateUser(string userName, string password, AuthCallback authCallback)
     {
-        if (displayName == "")
+        if (userName == string.Empty || password == string.Empty)
         {
             Debug.LogError("Fields cannot be empy!");
             return;
         }
 
-        Debug.Log("Authenticating device...");
-        new GameSparks.Api.Requests.DeviceAuthenticationRequest()
-            .SetDisplayName(displayName)
+        Debug.Log("Authenticating user...");
+        new GameSparks.Api.Requests.AuthenticationRequest()
+            .SetUserName(userName)
+            .SetPassword(password)
             .Send((response) =>
             {
                 if (!response.HasErrors)
                 {
                     authCallback(response);
-                    Debug.Log("Device authentiated...");
+                    Debug.Log("User authentiated...");
                 }
 
                 else
-                    Debug.Log("Error authenticating device...");
+                    Debug.Log("Error authenticating user...");
             });
     }
 
@@ -73,7 +76,7 @@ public class GameSparksManager : MonoBehaviour
     public GameSparksRTUnity GetRTSession() { return this.gameSparksRTUnity; }
 
     private RTSessionInfo sessionInfo;
-    public RTSessionInfo GetSessionInf() { return this.sessionInfo; }
+    public RTSessionInfo GetSessionInfo() { return this.sessionInfo; }
 
     public void StartNewRTSession(RTSessionInfo _info)
     {
@@ -117,7 +120,15 @@ public class GameSparksManager : MonoBehaviour
 
     private void OnPacketReceived(RTPacket _packet)
     {
+        switch(_packet.OpCode)
+        {
+            case 1:
+                if (chatManager == null)
+                    chatManager = GameObject.Find("ChatManager").GetComponent<ChatManager>();
 
+                chatManager.OnMessageRecieved(_packet);
+                break;
+        }
     }
 }
 
@@ -150,20 +161,22 @@ public class RTSessionInfo
 
     }
 
-}
-
-public class RTPlayer
-{
-    public string displayName;
-    public string id;
-    public int peerId;
-    public bool isOnline;
-
-    public RTPlayer(string displayName, string id, int peerId)
+    public class RTPlayer
     {
-        this.displayName = displayName;
-        this.id = id;
-        this.peerId = peerId;
+        public string displayName;
+        public string id;
+        public int peerId;
+        public bool isOnline;
+
+        public RTPlayer(string displayName, string id, int peerId)
+        {
+            this.displayName = displayName;
+            this.id = id;
+            this.peerId = peerId;
+        }
     }
+
 }
+
+
 
